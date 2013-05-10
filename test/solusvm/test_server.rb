@@ -133,7 +133,9 @@ class TestServer < Test::Unit::TestCase
   end
 
   def test_add_ip
-    #flunk "This is broken on the SolusVM API Level"
+    VCR.use_cassette "server/add_ip" do
+      assert @server.add_ip(1)
+    end
   end
 
   def test_change_plan
