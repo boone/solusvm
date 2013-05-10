@@ -134,8 +134,9 @@ class TestServer < Test::Unit::TestCase
 
   def test_add_ip
     VCR.use_cassette "server/add_ip" do
-      assert @server.add_ip(1)
+      assert_equal '123.123.123.123', @server.add_ip(1)
     end
+    assert_equal 'Ip address added', @server.statusmsg
   end
 
   def test_del_ip
